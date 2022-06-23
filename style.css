@@ -33,14 +33,11 @@ button {
 }
 
 .start-btn {
-  display: inline-block;
   position: relative;
   font-size: 1.15rem;
   font-weight: bold;
   background: var(--color-button);
   padding: 0.6rem 1rem;
-  border: 2px solid var(--color-border);
-
   margin: 1rem 0;
   border: 0;
 }
@@ -74,9 +71,6 @@ button {
 }
 
 #keys {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   padding: 1rem;
 }
 

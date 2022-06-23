@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSnake = [2, 1, 0];
   let direction = 1;
   let score = 0;
-  let intervalTime = 200;
+  let intervalTime = 200; // determines speed - frequency of game loop calls
   let interval = 0;
   let snakeColor = Math.floor(Math.random() * 360);
   let snakeColorIncrement = 10;
@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startGame() {
     grid.classList.remove('shake');
-    currentSnake.forEach((index) => {
-      cells[index].style.background = 'none';
-      cells[index].classList.remove('snake');
-      cells[index].innerText = '';
+    currentSnake.forEach((i) => {
+      cells[i].style.background = 'none';
+      cells[i].classList.remove('snake');
+      cells[i].innerText = '';
     });
     cells[foodItemIndex].classList.remove('food-item');
     cells[foodItemIndex].innerText = '';
@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreDisplay.innerHTML = score;
     currentSnake = [2, 1, 0];
     createFood();
-    currentSnake.forEach((index) => {
+    currentSnake.forEach((i) => {
       snakeColor += snakeColorIncrement % 360;
-      cells[index].style.background = `hsl(${snakeColor}, 100%, 50%)`;
-      cells[index].classList.add('snake');
+      cells[i].style.background = `hsl(${snakeColor}, 100%, 50%)`;
+      cells[i].classList.add('snake');
     });
     interval = setInterval(gameLoop, intervalTime);
   }
@@ -88,17 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
         down: -10
     */
     if (
-      (currentSnake[0] + width >= width * width && direction === width) || // hits bottom
+      (currentSnake[0] + width >= width * width && direction === width) || // hits bottom wall
       (currentSnake[0] % width === width - 1 && direction === 1) || // hits right wall
       (currentSnake[0] % width === 0 && direction === -1) || // hits left wall
-      (currentSnake[0] - width < 0 && direction === -width) || // hits the top
+      (currentSnake[0] - width < 0 && direction === -width) || // hits the top wall
       cells[currentSnake[0] + direction].classList.contains('snake') // hits itself
     ) {
       grid.classList.add('shake');
-      return clearInterval(interval);
+      clearInterval(interval);
+      return;
     }
 
-    const tail = currentSnake.pop(); //removes last item of the array
+    const tail = currentSnake.pop();
     cells[tail].classList.remove('snake');
     cells[tail].style.background = 'none';
     currentSnake.unshift(currentSnake[0] + direction); // gives direction to the head
@@ -111,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentSnake.push(tail);
       score++;
       scoreDisplay.textContent = score;
-      clearInterval(interval);
-      interval = setInterval(gameLoop, intervalTime);
       createFood();
     }
     cells[currentSnake[0]].classList.add('snake');
@@ -143,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleKeyMove(e) {
-    e.preventDefault(); // prevent browser scrolling page
     if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(e.key))
       return;
     moveSnake(e.key);
