@@ -70,10 +70,6 @@ button {
   transform: scale(1.15);
 }
 
-#keys {
-  padding: 1rem;
-}
-
 .keys--container {
   display: grid;
   grid-template-columns: 50px 50px 50px;
@@ -82,9 +78,10 @@ button {
     '.    up   .'
     'left down right';
   grid-gap: 10px;
+  padding: 1rem;
 }
 
-#keys button {
+.keys--container button {
   background-color: var(--color-button-after);
   border: none;
   padding: 0.5rem;
@@ -92,7 +89,7 @@ button {
   transition: all 0.3s ease;
 }
 
-#keys button:focus {
+.keys--container button:focus {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
