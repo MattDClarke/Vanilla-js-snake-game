@@ -120,24 +120,33 @@ document.addEventListener('DOMContentLoaded', () => {
     cells[currentSnake[0]].style.background = `hsl(${snakeColor}, 100%, 50%)`;
   }
 
-  function moveSnake(moveDirection) {
+  async function moveSnake(moveDirection) {
     if (
       !['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(
         moveDirection
       )
     )
       return;
+    let directionVal;
     if (moveDirection === 'ArrowRight' && direction !== -1) {
-      direction = 1;
+      directionVal = 1;
+      if (currentSnake[0] + directionVal === currentSnake[1]) return;
+      direction = directionVal;
     }
     if (moveDirection === 'ArrowLeft' && direction !== 1) {
-      direction = -1;
+      directionVal = -1;
+      if (currentSnake[0] + directionVal === currentSnake[1]) return;
+      direction = directionVal;
     }
     if (moveDirection === 'ArrowUp' && direction !== width) {
-      direction = -width;
+      directionVal = -width;
+      if (currentSnake[0] + directionVal === currentSnake[1]) return;
+      direction = directionVal;
     }
     if (moveDirection === 'ArrowDown' && direction !== -width) {
-      direction = width;
+      directionVal = width;
+      if (currentSnake[0] + directionVal === currentSnake[1]) return;
+      direction = directionVal;
     }
   }
 
