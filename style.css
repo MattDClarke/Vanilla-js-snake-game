@@ -41,7 +41,7 @@ button {
   margin: 1rem 0;
   border: 0;
 }
-.start-btn:after {
+.start-btn::after {
   position: absolute;
   content: attr(data-content);
   width: 100%;
@@ -57,8 +57,8 @@ button {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.start-btn:hover:after,
-.start-btn:focus:after {
+.start-btn:hover::after,
+.start-btn:focus::after {
   transform: translate(0);
 }
 
@@ -70,7 +70,7 @@ button {
   transform: scale(1.15);
 }
 
-.keys--container {
+.keys-container {
   display: grid;
   grid-template-columns: 50px 50px 50px;
   grid-template-rows: auto;
@@ -81,7 +81,7 @@ button {
   padding: 1rem;
 }
 
-.keys--container button {
+.keys-container button {
   background-color: var(--color-button-after);
   border: none;
   padding: 0.5rem;
@@ -89,7 +89,7 @@ button {
   transition: all 0.3s ease;
 }
 
-.keys--container button:focus {
+.keys-container button:focus {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
