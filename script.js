@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cells[currentSnake[0]].style.background = `hsl(${snakeColor}, 100%, 50%)`;
   }
 
-  async function moveSnake(moveDirection) {
+  function moveSnake(moveDirection) {
     if (
       !['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(
         moveDirection
